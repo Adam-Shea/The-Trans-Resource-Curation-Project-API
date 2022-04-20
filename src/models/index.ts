@@ -2,7 +2,10 @@ import { Options, Sequelize } from 'sequelize'
 import dotenv from "dotenv"
 dotenv.config()
 
-import article from './article'
+import Article from './article'
+import Category from './category'
+import Logs from './logs'
+
 
 // Open database connection
 const sequelize = new Sequelize(
@@ -12,19 +15,22 @@ const sequelize = new Sequelize(
     {
         host: process.env.DB_HOST!,
         dialect: 'mysql',
+        logging: false
     }
 )
 
 // Initialize each model in the database
 // This must be done before associations are made
-let models = [article]
+let models = [Article, Category, Logs]
 models.forEach(model => model.initialize(sequelize))
+
+Article.belongsToMany(Category, { through: 'Articles_Category' })
 
 // Create database tables
 //   force: true causes database to reset with each run
-sequelize.sync({ force: true })
+sequelize.sync({})
 
 export {
     sequelize as Database,
-    article
+    Article, Category, Logs
 }

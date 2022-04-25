@@ -25,7 +25,7 @@ async function getArticle(id: number): Promise<any | null> {
             attributes: ["title"],
             through: { attributes: [] }
         }],
-        attributes: ["title", "text", "image", "author", "createdAt"]
+        attributes: ["id", "title", "text", "image", "author", "createdAt"]
     });
 }
 
@@ -39,7 +39,7 @@ async function getArticleByCat(id: number): Promise<any | null> {
             through: { attributes: [] }
         }],
         order: [['id', 'ASC']],
-        attributes: ["title", "text", "image", "author", "createdAt"]
+        attributes: ["id", "title", "text", "image", "author", "createdAt"]
     });
 }
 

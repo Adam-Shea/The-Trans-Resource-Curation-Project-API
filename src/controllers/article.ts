@@ -12,7 +12,7 @@ async function getArticles(): Promise<any[]> {
             attributes: ["title"],
             through: { attributes: [] }
         }],
-        attributes: ["title", "text", "image", "author", "createdAt"]
+        attributes: ["id", "title", "text", "image", "author", "createdAt"]
     });
 }
 

@@ -54,7 +54,7 @@ interface articleRequest {
 
 async function updateArticle(id: number, data: articleRequest): Promise<any | null> {
     await Articles_Category.sequelize?.query(`DELETE FROM Articles_Category WHERE ArticleId=${id}`)
-
+    console.log(data)
     for (const catId of data.categories) {
         const newDate: string = new Date().toISOString().slice(0, 19).replace('T', ' ');
         try {
@@ -93,7 +93,7 @@ async function deleteArticle(id: number): Promise<any | null> {
 }
 
 async function createArticle(data: articleRequest): Promise<any | null> {
-
+    console.log(data)
     try {
         await Article.create(
             {

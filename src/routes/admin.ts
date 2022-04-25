@@ -49,18 +49,6 @@ router.route('/articles')
         }
     })
 
-
-router.route('/categories')
-    .get((req, res, next) => {
-        if (twofactor.verifyToken(process.env.ADMIN_TOKEN!, req.headers.token)) {
-            category.getCategories()
-                .then(response => res.status(200).send(response))
-                .finally(next)
-        } else {
-            res.sendStatus(401)
-        }
-    })
-
 router.route('/categories/:id')
     .delete((req, res, next) => {
         if (twofactor.verifyToken(process.env.ADMIN_TOKEN!, req.headers.token)) {

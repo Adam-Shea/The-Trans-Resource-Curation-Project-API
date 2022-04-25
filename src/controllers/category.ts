@@ -42,7 +42,10 @@ async function createCategory(data: categoryRequest): Promise<any | null> {
 
 async function getCategories(): Promise<any | null> {
     try {
-        return await Category.sequelize?.query(`SELECT * FROM Categories`)
+        return await Category.findAll({
+            order: [['id', 'ASC']],
+            attributes: ['id', 'title']
+        })
     } catch {
         return 500
     }

@@ -1,8 +1,7 @@
 import { Sequelize } from 'sequelize';
 import { Article, Category, Articles_Category } from '../models'
 
-/* GET /students
- *   > Returns a list of all students */
+
 async function getArticles(): Promise<any[]> {
     return await Article.findAll({
         order: [['id', 'ASC']],

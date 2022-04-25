@@ -6,30 +6,35 @@ const router = Router()
 
 router.route('/')
     .get((req, res, next) => {
-        controller.getArticles()
-            .then(articles => res.status(200).send(articles))
-            .finally(next)
+        try {
+            controller.getArticles()
+                .then(articles => res.status(200).send(articles))
+                .finally(next)
+        } catch {
+            res.sendStatus(500)
+        }
     })
 
 router.route('/:id')
     .get((req, res, next) => {
-        controller.getArticle(parseInt(req.params.id))
-            .then(articles => res.status(200).send(articles))
-            .finally(next)
+        try {
+            controller.getArticle(parseInt(req.params.id))
+                .then(articles => res.status(200).send(articles))
+                .finally(next)
+        } catch {
+            res.sendStatus(500)
+        }
     })
 
 router.route('/cat/articles/:id')
     .get((req, res, next) => {
-        controller.getArticleByCat(parseInt(req.params.id))
-            .then(articles => res.status(200).send(articles))
-            .finally(next)
-    })
-
-router.route('/categories')
-    .get((req, res, next) => {
-        category.getCategories()
-            .then(response => res.status(200).send(response))
-            .finally(next)
+        try {
+            controller.getArticleByCat(parseInt(req.params.id))
+                .then(articles => res.status(200).send(articles))
+                .finally(next)
+        } catch {
+            res.sendStatus(500)
+        }
     })
 
 export default router

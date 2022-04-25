@@ -51,9 +51,21 @@ async function getCategories(): Promise<any | null> {
     }
 }
 
+async function getCategory(id: number): Promise<any | null> {
+    try {
+        return await Category.findOne({
+            where: { id: id },
+            attributes: ['id', 'title']
+        })
+    } catch {
+        return 500
+    }
+}
+
 export default {
     createCategory: createCategory,
     deleteCategory: deleteCategory,
     updateCategory: updateCategory,
-    getCategories: getCategories
+    getCategories: getCategories,
+    getCategory: getCategory
 }

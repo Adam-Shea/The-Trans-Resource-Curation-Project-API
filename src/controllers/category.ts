@@ -42,7 +42,9 @@ async function createCategory(data: categoryRequest): Promise<any | null> {
 
 async function getCategories(): Promise<any | null> {
     try {
-        return await Category.findAll()
+        return await Category.findAll({
+            attributes: ['id', 'title']
+        })
     } catch {
         return 500
     }

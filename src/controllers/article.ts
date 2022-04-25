@@ -45,17 +45,19 @@ async function getArticleByCat(id: number): Promise<any | null> {
 
 
 interface articleRequest {
-    title: string,
-    text: string,
-    image: string,
-    author: string,
-    categories: number[],
+    data: {
+        title: string,
+        text: string,
+        image: string,
+        author: string,
+        categories: number[],
+    }
 };
 
 async function updateArticle(id: number, data: articleRequest): Promise<any | null> {
     await Articles_Category.sequelize?.query(`DELETE FROM Articles_Category WHERE ArticleId=${id}`)
     console.log(data)
-    for (const catId of data.categories) {
+    for (const catId of data.data.categories) {
         const newDate: string = new Date().toISOString().slice(0, 19).replace('T', ' ');
         try {
             await Articles_Category.sequelize?.query(`INSERT INTO Articles_Category VALUES ('${newDate}','${newDate}',${id},${catId});`)
@@ -67,10 +69,10 @@ async function updateArticle(id: number, data: articleRequest): Promise<any | nu
     try {
         await Article.update(
             {
-                title: data.title,
-                text: data.text,
-                image: data.image,
-                author: data.author,
+                title: data.data.title,
+                text: data.data.text,
+                image: data.data.image,
+                author: data.data.author,
             }, { where: { id: id } }
         )
     } catch {
@@ -93,17 +95,16 @@ async function deleteArticle(id: number): Promise<any | null> {
 }
 
 async function createArticle(data: articleRequest): Promise<any | null> {
-    console.log(data)
     try {
         await Article.create(
             {
-                title: data.title,
-                text: data.text,
-                image: data.image,
-                author: data.author,
+                title: data.data.title,
+                text: data.data.text,
+                image: data.data.image,
+                author: data.data.author,
             }
         ).then(async function (article) {
-            for (const catId of data.categories) {
+            for (const catId of data.data.categories) {
                 const newDate: string = new Date().toISOString().slice(0, 19).replace('T', ' ');
                 try {
                     await Articles_Category.sequelize?.query(`INSERT INTO Articles_Category VALUES ('${newDate}','${newDate}',${article.id},${catId});`)

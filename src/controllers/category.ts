@@ -5,12 +5,14 @@ import { Article, Category, Articles_Category } from '../models'
  *   > Returns a list of all students */
 
 interface categoryRequest {
-    title: string,
+    data: {
+        title: string,
+    }
 };
 
 async function updateCategory(id: number, data: categoryRequest): Promise<any | null> {
     try {
-        await Category.update({ title: data.title, }, { where: { id: id } }
+        await Category.update({ title: data.data.title, }, { where: { id: id } }
         )
     } catch {
         return 500
@@ -31,7 +33,7 @@ async function deleteCategory(id: number): Promise<any | null> {
 
 async function createCategory(data: categoryRequest): Promise<any | null> {
     try {
-        await Category.create({ title: data.title })
+        await Category.create({ title: data.data.title })
     } catch {
         return 500
     }

@@ -8,7 +8,7 @@ async function getArticles(): Promise<any[]> {
         include: [{
             model: Category,
             required: false,
-            attributes: ["title"],
+            attributes: ["id", "title"],
             through: { attributes: [] }
         }],
         attributes: ["id", "title", "text", "image", "author", "createdAt"]
@@ -21,7 +21,7 @@ async function getArticle(id: number): Promise<any | null> {
         include: [{
             model: Category,
             required: false,
-            attributes: ["title"],
+            attributes: ["id", "title"],
             through: { attributes: [] }
         }],
         attributes: ["id", "title", "text", "image", "author", "createdAt"]

@@ -4,6 +4,7 @@ dotenv.config()
 
 import Article from './article'
 import Category from './category'
+import Articles_Category from './category'
 import Logs from './logs'
 
 
@@ -21,7 +22,7 @@ const sequelize = new Sequelize(
 
 // Initialize each model in the database
 // This must be done before associations are made
-let models = [Article, Category, Logs]
+let models = [Article, Category, Logs, Articles_Category]
 models.forEach(model => model.initialize(sequelize))
 
 Article.belongsToMany(Category, { through: 'Articles_Category' })
@@ -32,5 +33,5 @@ sequelize.sync({})
 
 export {
     sequelize as Database,
-    Article, Category, Logs
+    Article, Category, Logs, Articles_Category
 }

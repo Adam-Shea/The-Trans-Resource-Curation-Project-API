@@ -15,15 +15,16 @@ class Article extends Model {
     public updatedAt!: Date;
 
     // Populated for inclusions
-    public readonly Category?: Category[]
+    public static Category?: Category[]
 
     public static associations: {
-        Students: Association<Article, Category>
+        categories: Association<Article, Category>
     }
 
     public getArticles!: BelongsToManyGetAssociationsMixin<Category>
     public getArticle!: BelongsToManyGetAssociationsMixin<Category>
     public getArticleByCat!: BelongsToManyGetAssociationsMixin<Category>
+    public updateArticle!: BelongsToManyGetAssociationsMixin<Category>
 
     public static initialize(sequelize: Sequelize) {
         this.init({

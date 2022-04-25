@@ -1,5 +1,5 @@
 import { Sequelize } from 'sequelize';
-import { Article, Category, Articles_Category } from '../models'
+import { Category, Articles_Category } from '../models'
 
 /* GET /students
  *   > Returns a list of all students */
@@ -42,9 +42,7 @@ async function createCategory(data: categoryRequest): Promise<any | null> {
 
 async function getCategories(): Promise<any | null> {
     try {
-        return await Category.findAll({
-            attributes: ['id', 'title']
-        })
+        return await Category.sequelize?.query(`SELECT * FROM Categories`)
     } catch {
         return 500
     }

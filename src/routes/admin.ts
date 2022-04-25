@@ -7,7 +7,7 @@ const router = Router()
 
 router.route('/articles')
     .get((req, res, next) => {
-        if (twofactor.verifyToken(process.env.ADMIN_TOKEN!, req.body.token)) {
+        if (twofactor.verifyToken(process.env.ADMIN_TOKEN!, req.headers.token)) {
             article.getArticles()
                 .then(response => res.status(200).send(response))
                 .finally(next)
@@ -40,7 +40,7 @@ router.route('/articles/:id')
 
 router.route('/articles')
     .post((req, res, next) => {
-        if (twofactor.verifyToken(process.env.ADMIN_TOKEN!, req.body.token)) {
+        if (twofactor.verifyToken(process.env.ADMIN_TOKEN!, req.headers.token)) {
             article.createArticle(req.body)
                 .then(response => res.sendStatus(response))
                 .finally(next)
@@ -52,7 +52,7 @@ router.route('/articles')
 
 router.route('/categories')
     .get((req, res, next) => {
-        if (twofactor.verifyToken(process.env.ADMIN_TOKEN!, req.body.token)) {
+        if (twofactor.verifyToken(process.env.ADMIN_TOKEN!, req.headers.token)) {
             category.getCategories()
                 .then(response => res.status(200).send(response))
                 .finally(next)
@@ -85,7 +85,7 @@ router.route('/categories/:id')
 
 router.route('/categories')
     .post((req, res, next) => {
-        if (twofactor.verifyToken(process.env.ADMIN_TOKEN!, req.body.token)) {
+        if (twofactor.verifyToken(process.env.ADMIN_TOKEN!, req.headers.token)) {
             category.createCategory(req.body)
                 .then(response => res.sendStatus(response))
                 .finally(next)

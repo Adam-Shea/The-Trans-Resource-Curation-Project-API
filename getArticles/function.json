@@ -1,0 +1,26 @@
+{
+	"bindings": [
+		{
+			"authLevel": "anonymous",
+			"type": "httpTrigger",
+			"direction": "in",
+			"name": "req",
+			"methods": ["get"]
+		},
+		{
+			"type": "http",
+			"direction": "out",
+			"name": "res"
+		},
+		{
+			"name": "documents",
+			"databaseName": "dev",
+			"collectionName": "article",
+			"connectionStringSetting": "cosmosDbConnetionString",
+			"sqlQuery": "SELECT * FROM c",
+			"direction": "in",
+			"type": "cosmosDB"
+		}
+	],
+	"scriptFile": "../dist/getArticles/index.js"
+}

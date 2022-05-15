@@ -18,7 +18,7 @@
 			"databaseName": "dev",
 			"collectionName": "article",
 			"connectionStringSetting": "cosmosDbConnetionString",
-			"sqlQuery": "SELECT * FROM c WHERE Id='{id}'",
+			"sqlQuery": "SELECT * FROM c WHERE id='{id}'",
 			"direction": "in",
 			"type": "cosmosDB"
 		}

@@ -6,7 +6,7 @@
 			"direction": "in",
 			"name": "req",
 			"methods": ["get"],
-			"route": "articles"
+			"route": "articles/{id}"
 		},
 		{
 			"type": "http",
@@ -18,7 +18,7 @@
 			"databaseName": "dev",
 			"collectionName": "article",
 			"connectionStringSetting": "cosmosDbConnetionString",
-			"sqlQuery": "SELECT * FROM c",
+			"sqlQuery": "SELECT * FROM c WHERE Id='{id}'",
 			"direction": "in",
 			"type": "cosmosDB"
 		}

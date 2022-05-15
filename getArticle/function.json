@@ -17,11 +17,11 @@
 			"name": "documents",
 			"databaseName": "dev",
 			"collectionName": "article",
-			"connectionStringSetting": "cosmosDbConnetionString",
+			"connectionStringSetting": "CosmosDbConnectionString",
 			"sqlQuery": "SELECT c.id,c.title,c.text FROM c WHERE c.id={id}",
 			"direction": "in",
 			"type": "cosmosDB"
 		}
 	],
-	"scriptFile": "../dist/getArticles/index.js"
+	"scriptFile": "../dist/getArticle/index.js"
 }

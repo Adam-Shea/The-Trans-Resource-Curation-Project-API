@@ -17,8 +17,8 @@
 			"name": "documents",
 			"databaseName": "dev",
 			"collectionName": "article",
-			"connectionStringSetting": "cosmosDbConnetionString",
-			"sqlQuery": "SELECT c.id,c.title,c.desc FROM c",
+			"connectionStringSetting": "CosmosDbConnectionString",
+			"sqlQuery": "SELECT c.id, c.title, c.description FROM c",
 			"direction": "in",
 			"type": "cosmosDB"
 		}
